@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     width: "100%",
     left: 0,
     top: 0,
+    zindex: -1,
   },
   whiteFade: {
     position: "fixed",
@@ -29,6 +30,10 @@ const useStyles = makeStyles({
   },
   appBar: {
     background: "linear-gradient(#37474C 5%, #000)",
+  },
+  test: {
+    zIndex: 2,
+    margin: 22,
   },
 });
 
