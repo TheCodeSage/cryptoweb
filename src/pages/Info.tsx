@@ -1,10 +1,9 @@
-import { Button } from "@mui/material";
 import { Typography } from "@mui/material";
 
 const Info = () => {
   return (
     <>
-      <Typography variant="h3"> INFO PAGE </Typography>
+      <Typography variant="h3"> Info </Typography>
     </>
   );
 };

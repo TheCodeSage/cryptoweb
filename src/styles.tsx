@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   textNavigation: {
     padding: 15,
     color: "white",
@@ -15,26 +15,22 @@ const useStyles = makeStyles({
   },
   bgVideo: {
     position: "fixed",
-    width: "100%",
     left: 0,
     top: 0,
-    zindex: -1,
+    zIndex: -2,
   },
-  whiteFade: {
-    position: "fixed",
+  dashboardTitle: {
+    color: "white",
+    textAlign: "center",
+    fontSize: "2.3rem",
+  },
+  blackFade: {
     width: "100%",
     left: 0,
     top: 0,
     height: "100%",
-    background: "linear-gradient(transparent 1%, #ffff 25%)",
-  },
-  appBar: {
-    background: "linear-gradient(#37474C 5%, #000)",
-  },
-  test: {
-    zIndex: 2,
-    margin: 22,
+    position: "fixed",
+    zIndex: -1,
+    background: "linear-gradient(transparent 0%, #000 70%)",
   },
 });
-
-export default () => useStyles();

@@ -1,26 +1,42 @@
-import useStyles from "../styles";
-import { Container, Typography } from "@mui/material";
+import { useStyles } from "../styles";
+import { getDashboardCardData } from "../mockApi";
+import DashboardCard from "../components/DashboardCard";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  const video = require("../media/lowPolyBackground.mp4");
+  const video = require("../media/bgVideo.mp4");
+  const bgImg = require("../media/headerImg.png");
   const styles = useStyles();
+  const [cardAlignment, setCardAlignment] = useState(false);
+  const data = getDashboardCardData();
+
+  useEffect(() => {
+    setCardAlignment(!cardAlignment);
+    console.log("style set: " + cardAlignment);
+  }, []);
+
   return (
-    <div>
-      <iframe
-        width="100%"
-        height="210"
-        src="https://www.youtube.com/embed/lRTtMcx6rSM"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"        
-      ></iframe>
-      {/* <video loop autoPlay muted className={styles.bgVideo}>
+    <>
+      <img src={bgImg} width="100%" />
+      <video loop autoPlay muted className={styles.bgVideo}>
         <source src={video} type="video/mp4" />
         Browser does not support video
-      </video> */}
-      <div className={styles.whiteFade} />
-      <Typography variant="h3" color="black" className={styles.test}>
-        Welcome
-      </Typography>
-    </div>
+      </video>
+      <div className={styles.blackFade} />
+      <div style={{ overflowX: "clip" }}>
+        {data.map((data) => (
+          <DashboardCard
+            key={data.id}
+            title={data.title}
+            subtitle={data.subtitle}
+            img={data.img}
+            description={data.description}
+            likes={data.likes}
+            alignment={data.alignment}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 

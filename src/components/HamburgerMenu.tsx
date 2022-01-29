@@ -4,7 +4,7 @@ import { IconButton, MenuItem, Menu } from "@mui/material";
 import { useState } from "react";
 import { NavigationProps } from "../interfaces";
 import { Link } from "react-router-dom";
-import useStyles from "../styles";
+import { useStyles } from "../styles";
 
 const HamburgerMenu = (props: NavigationProps) => {
   const styles = useStyles();
