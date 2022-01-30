@@ -83,7 +83,7 @@ export const getMarketplaceData = () => {
         attackCeiling: 5,
         defense: 3,
         speed: 3,
-        skill: SkillEnum.pimpSmack,
+        skill: SkillEnum.rockHard,
       },
     },
     {
@@ -109,7 +109,7 @@ export const getMarketplaceData = () => {
         attackCeiling: 5,
         defense: 3,
         speed: 3,
-        skill: SkillEnum.pimpSmack,
+        skill: SkillEnum.juicyWiggle,
       },
     },
     {
@@ -135,7 +135,7 @@ export const getMarketplaceData = () => {
         attackCeiling: 5,
         defense: 3,
         speed: 3,
-        skill: SkillEnum.pimpSmack,
+        skill: SkillEnum.juicyWiggle,
       },
     },
     {
@@ -161,7 +161,7 @@ export const getMarketplaceData = () => {
         attackCeiling: 5,
         defense: 3,
         speed: 3,
-        skill: SkillEnum.pimpSmack,
+        skill: SkillEnum.juicyWiggle,
       },
     },
     {
@@ -174,7 +174,7 @@ export const getMarketplaceData = () => {
         attackCeiling: 5,
         defense: 3,
         speed: 3,
-        skill: SkillEnum.pimpSmack,
+        skill: SkillEnum.juicyWiggle,
       },
     },
 
@@ -188,7 +188,7 @@ export const getMarketplaceData = () => {
         attackCeiling: 5,
         defense: 3,
         speed: 3,
-        skill: SkillEnum.pimpSmack,
+        skill: SkillEnum.juicyWiggle,
       },
     },
     {

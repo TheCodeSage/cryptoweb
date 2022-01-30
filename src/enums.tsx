@@ -1,7 +1,7 @@
 export enum SkillEnum {
-  juicyWiggle = 0,
-  pimpSmack = 1,
-  rockHard = 2,
+  juicyWiggle = "Juicy Wiggle",
+  pimpSmack = "Pimpus Smaximus",
+  rockHard = "Get Hard",
 }
 
 export enum CreatureEnum {

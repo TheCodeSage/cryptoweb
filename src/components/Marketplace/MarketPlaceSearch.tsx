@@ -27,8 +27,8 @@ export const MarketPlaceSearch = ({
   setSearchFilter,
 }: IMarketplaceSearchProps) => {
   return (
-    <Grid container spacing={5} padding={2} alignItems="center">
-      <Grid item>
+    <Grid container spacing={5} padding={2}>
+      <Grid item direction="column">
         <Stack>
           <Typography>Creatures: </Typography>
           <List>
@@ -52,7 +52,7 @@ export const MarketPlaceSearch = ({
           </List>
         </Stack>
       </Grid>
-      <Grid item>
+      <Grid item direction="column">
         <Stack direction="row">
           <Typography>Tier:</Typography>
           <Rating
@@ -62,10 +62,7 @@ export const MarketPlaceSearch = ({
             }
           />
         </Stack>
-      </Grid>
-
-      <Grid item>
-        <Stack direction="row" alignItems="center">
+        <Stack direction="row" alignItems="center" marginTop="25px">
           <Typography>Price:</Typography>
           <TextField
             type="number"
@@ -74,11 +71,7 @@ export const MarketPlaceSearch = ({
             label="min"
             sx={{ width: "100px" }}
             onChange={(e) =>
-              onMinPriceChange(
-                e.target.value,
-                searchFilter,
-                setSearchFilter
-              )
+              onMinPriceChange(e.target.value, searchFilter, setSearchFilter)
             }
           />
           -
@@ -89,11 +82,7 @@ export const MarketPlaceSearch = ({
             label="max"
             sx={{ width: "100px" }}
             onChange={(e) =>
-              onMaxPriceChange(
-                e.target.value,
-                searchFilter,
-                setSearchFilter
-              )
+              onMaxPriceChange(e.target.value, searchFilter, setSearchFilter)
             }
           />
         </Stack>
