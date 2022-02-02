@@ -6,7 +6,7 @@ import UserAvatar from "./UserAvatar";
 import TextualNavigation from "./TextualNavigation";
 
 const MyAppBar = () => {
-  const pages = ["Dashboard", "Marketplace", "Community", "Info"];
+  const pages = ["Dashboard", "Marketplace", "Arena", "Info"];
   const styles = useStyles();
 
   return (

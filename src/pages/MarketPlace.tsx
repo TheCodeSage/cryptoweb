@@ -1,204 +1,132 @@
-import { Button, Grid, Paper, Stack, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, ImageList, Container } from "@mui/material";
+import { borderRadius } from "@mui/system";
 import { useState, useEffect } from "react";
 import { DrawerFlyout } from "../components/Marketplace/DrawerFlyout";
+import { MarketplaceCard } from "../components/Marketplace/MarketplaceCard";
 import {
   getDefaultSearchCriteria,
   filterData,
 } from "../components/Marketplace/marketplaceHelper";
+import { RecentListingCard } from "../components/Marketplace/RecentListingCard";
 import { IMarketPlaceCardData, IMarketplaceFilter } from "../interfaces";
-import { getMarketplaceData } from "../mockApi";
+import {
+  getMarketplaceData,
+  getRecentPurchaseData,
+  getRecentSaleData,
+} from "../mockApi";
+import { useStyles } from "../styles";
 
 const MarketPlace = () => {
+  const bgImage = require("../media/marketPlaceBg.jpg");
+  const styles = useStyles();
   const [searchFilter, setSearchFilter] = useState<IMarketplaceFilter>(
     getDefaultSearchCriteria()
   );
 
   const [data, setData] = useState(getMarketplaceData());
   const [filteredData, setFilteredData] = useState(data);
+  const [recentSale, setRecentSale] = useState(getRecentSaleData());
+  const [recentPurchase, setRecentPurchase] = useState(getRecentPurchaseData());
 
   useEffect(() => {
     setFilteredData(filterData(searchFilter, data));
   }, [searchFilter]);
 
   return (
-    <Grid
-      direction="row"
-      pt={10}
-      justifyContent="center"
-      pb={20}
-      sx={{ display: "flex", flexWrap: "wrap" }}
-    >
-      <img
-        src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngmart.com%2Ffiles%2F5%2FMarketplace-PNG-Photos.png&f=1&nofb=1"
-        style={{ position: "fixed", width: "75%" }}
-      />
-
+    <Container maxWidth="xl">
       <Grid
-        item
-        width="100%"
         direction="row"
-        padding={3}
-        zIndex={1}
-        sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+        justifyContent="center"
+        pb={20}
+        sx={{ display: "flex", flexWrap: "wrap" }}
       >
-        <Box
+        <img
+          src={bgImage}
+          style={{ position: "fixed", width: "100%", height: "100%" }}
+        />
+        <div className={styles.blackFade} style={{ zIndex: "1" }} />
+        <Grid
+          mt={12}
+          item
+          width="100%"
+          direction="row"
+          padding={2}
+          zIndex={1}
           sx={{
-            background: "white",
-            height: "250px",
-            width: "45%",
-            padding: "20px",
-            margin: "10px",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            background: "#dddddd44",
+            borderRadius: "20px",
           }}
         >
-          <Typography>Recent Listing: </Typography>
-        </Box>
-        <Box
-          sx={{
-            background: "white",
-            height: "250px",
-            width: "45%",
-            padding: "20px",
-            margin: "10px",
-          }}
-        >
-          <Typography>Recent Purchase: </Typography>
-        </Box>
-      </Grid>
-
-      {filteredData.map((i: IMarketPlaceCardData) => {
-        return (
-          <Grid
-            item
-            margin={1.5}
-            zIndex="2"
-            border={2}
-            borderRadius={1.5}
-            sx={{ borderColor: "#ffffffdd" }}
+          <Box
+            pt={3}
+            pl={3}
+            borderRadius={2}
+            margin={2}
+            sx={{
+              background: "#eee",
+              width: "550px",
+            }}
           >
-            <Paper
-              elevation={3}
+            <Typography>Recently listed: </Typography>
+            <ImageList
               sx={{
-                width: "250px",
-                padding: "20px",
-                background:
-                  "linear-gradient(-15deg, #aaaaaaaa 0%, #809095 65%)",
-                backdropFilter: "blur(4px)",
+                gridAutoFlow: "column",
               }}
             >
-              <Grid container direction="row">
-                <Grid item xs={6}>
-                  <Typography
-                    color="whitesmoke"
-                    fontSize="15px"
-                    fontWeight="bold"
-                  >
-                    Tier: {i.tier}
-                  </Typography>
-                  <Typography
-                    color="whiteSmoke"
-                    fontSize="15px"
-                    fontWeight="bold"
-                  >
-                    Price: {i.price}
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    color="white"
-                    sx={{
-                      float: "right",
-                      fontWeight: "bold",
-                      fontSize: "17px",
-                    }}
-                  >
-                    Attributes:
-                  </Typography>
-                  <Typography
-                    color="whiteSmoke"
-                    fontSize="15px"
-                    sx={{ float: "right" }}
-                  >
-                    Attack: {i.attributes.attackFloor} -{" "}
-                    {i.attributes.attackCeiling}
-                  </Typography>
-                  <Typography
-                    color="whiteSmoke"
-                    fontSize="15px"
-                    sx={{ float: "right" }}
-                  >
-                    Defense: {i.attributes.defense}
-                  </Typography>
-                  <Typography
-                    color="whiteSmoke"
-                    fontSize="15px"
-                    sx={{ float: "right" }}
-                  >
-                    Speed: {i.attributes.speed}
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography
-                  color="whiteSmoke"
-                  fontSize="15px"
-                  sx={{ float: "right", justifyItems: "right" }}
-                >
-                  Skill: {i.attributes.skill}
-                </Typography>
-              </Grid>
+              {recentSale
+                .filter((i) => i.price < 200)
+                .map((i: IMarketPlaceCardData) => {
+                  return <RecentListingCard cardData={i} />;
+                })}
+            </ImageList>
+          </Box>
 
-              <Grid
-                item
-                xs={12}
-                sx={{
-                  justifyItems: "center",
-                  display: "grid",
-                  justifyContent: "center",
-                  width: "100%",
-                }}
-              >
-                <Stack
-                  sx={{
-                    borderRadius: "15px",
-                    overflow: "clip",
-                    display: "flex",
-                    width: "250px",
-                    height: "200px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "10px",
-                  }}
-                >
-                  <img src={i.img} height="100%" />
-                  <Box
-                    mt={-3}
-                    sx={{
-                      width: "100%",
-                      justifyItems: "end",
-                      background: "#506065ee",
-                    }}
-                  >
-                    <Typography
-                      color="white"
-                      fontWeight="bold"
-                      fontSize="17px"
-                      textAlign="center"
-                    >
-                      {i.name}
-                    </Typography>
-                  </Box>
-                </Stack>
-              </Grid>
-            </Paper>
-          </Grid>
-        );
-      })}
-
-      <DrawerFlyout
-        searchFilter={searchFilter}
-        setSearchFilter={setSearchFilter}
-      />
-    </Grid>
+          <Box
+            pt={3}
+            pl={3}
+            borderRadius={2}
+            margin={2}
+            sx={{
+              background: "#eee",
+              width: "550px",
+            }}
+          >
+            <Typography>Recent Purchase: </Typography>
+            <ImageList
+              sx={{
+                gridAutoFlow: "column",
+              }}
+            >
+              {recentPurchase.map((i: IMarketPlaceCardData) => {
+                return <RecentListingCard cardData={i} />;
+              })}
+            </ImageList>
+          </Box>
+        </Grid>
+        <Box
+          mt={2}
+          sx={{
+            background: "#dddddd44",
+            borderRadius: "20px",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            zIndex: "1",
+          }}
+        >
+          {filteredData.map((i: IMarketPlaceCardData) => {
+            return <MarketplaceCard cardData={i} />;
+          })}
+        </Box>
+        <DrawerFlyout
+          searchFilter={searchFilter}
+          setSearchFilter={setSearchFilter}
+        />
+      </Grid>
+    </Container>
   );
 };
 
