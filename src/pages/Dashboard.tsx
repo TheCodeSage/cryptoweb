@@ -18,10 +18,13 @@ const Dashboard = () => {
   return (
     <>
       <img src={bgImg} width="100%" />
-      <video loop autoPlay muted className={styles.bgVideo}>
-        <source src={video} type="video/mp4" />
-        Browser does not support video
-      </video>
+      <video
+        autoPlay
+        loop
+        muted
+        className={styles.bgVideo}
+        src="https://static.videezy.com/system/resources/previews/000/043/139/original/HUD-Ultron-Interface.mp4"
+      />
       <div className={styles.blackFade} />
       <div style={{ overflowX: "clip" }}>
         {data.map((data) => (

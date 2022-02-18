@@ -18,6 +18,7 @@ export const useStyles = makeStyles({
     left: 0,
     top: 0,
     zIndex: -2,
+    height: "100%",
   },
   dashboardTitle: {
     color: "white",
